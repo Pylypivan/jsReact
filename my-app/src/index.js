@@ -1,43 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+import AppHeader from './components/app-header';
+import SearchPanel from './components/search-panel';
+import TodoList from './components/todo-list';
+import ItemStatusFilter from './components/item-status-filter';
+
 import './index.css';
-import Clock from './App';
-import Button from './button';
-import * as serviceWorker from './serviceWorker';
 
-// function Greet(props) {
+const App = () => {
 
-   
-//     return (
-//         <h1> hello, my name is  {props.name} im {props.year}   </h1>
-//     )
-// }
+  const todoData = [
+    { label: 'Drink Coffee', important: false, id: 1 },
+    { label: 'Make Awesome App', important: true, id: 2 },
+    { label: 'Have a lunch', important: false, id: 3 }
+  ];
 
-// function GreetAll() {
-//     return (
-//         <div>
-//              <Greet name = 'ivan' year = '22'/>
-//              <Greet name = 'bred' year = '23'/>
-//              <Greet name = 'nik' year = '24'/>
-//         </div>
-//     )
-// }
+  return (
+    <div className="todo-app">
+      <AppHeader toDo={1} done={3} />
+      <div className="top-panel d-flex">
+        <SearchPanel />
+        <ItemStatusFilter />
+      </div>
 
+      <TodoList todos={todoData} />
+    </div>
+  );
+};
 
-class App extends React.Component {
-     render() {
-             return(
-                <div className = "wrapper"> 
-                   <Clock />
-                   <Button />
-                </div>
-             )
-     }
-}
-
-ReactDOM.render(<App/>, document.getElementById('root'));
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+ReactDOM.render(<App />,
+  document.getElementById('root'));
